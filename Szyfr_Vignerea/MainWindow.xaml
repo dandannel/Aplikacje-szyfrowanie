@@ -1,0 +1,94 @@
+﻿<Window x:Class="VigenereCipherApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Szyfr Vigenère’a" Height="550" Width="700"
+        Background="Silver">
+    <Window.Resources>
+        <!-- Animacja podświetlenia pola wynikowego -->
+        <Storyboard x:Key="HighlightAnimation">
+            <ColorAnimation Storyboard.TargetName="OutputTextBox"
+                        Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)"
+                        From="LightBlue" To="WhiteSmoke" 
+                        Duration="0:0:1" AutoReverse="False"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Tekst do zaszyfrowania -->
+        <StackPanel Grid.Row="0" Margin="0,10,0,20">
+            <TextBlock Text="Tekst do zaszyfrowania:" FontSize="16" FontWeight="Bold" Foreground="Black" Margin="0,0,0,5"/>
+            <TextBox x:Name="InputTextBox" FontSize="16" Padding="10"/>
+        </StackPanel>
+
+        <!-- Klucz szyfru -->
+        <StackPanel Grid.Row="1" Margin="0,10,0,20">
+            <TextBlock Text="Klucz szyfru:" FontSize="16" FontWeight="Bold" Foreground="Green" Margin="0,0,0,5"/>
+            <TextBox x:Name="KeyTextBox" FontSize="16" Padding="10"/>
+        </StackPanel>
+
+        <!-- Przyciski -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,20">
+            <Button Content="Szyfruj" Width="120" Height="50" Margin="10" FontSize="16" FontWeight="Bold" 
+                    Click="EncryptButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="DarkGreen" Offset="0"/>
+                        <GradientStop Color="LightGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White"/>
+                </Button.BorderBrush>
+                <Button.BorderThickness>2</Button.BorderThickness>
+                <Button.Foreground>White</Button.Foreground>
+            </Button>
+            
+            <Button Content="Odszyfruj" Width="120" Height="50" Margin="10" FontSize="16" FontWeight="Bold" 
+                    Click="DecryptButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="DarkGreen" Offset="0"/>
+                        <GradientStop Color="LightGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White"/>
+                </Button.BorderBrush>
+                <Button.BorderThickness>2</Button.BorderThickness>
+                <Button.Foreground>White</Button.Foreground>
+            </Button>
+
+            <Button Content="Wyczyść" Width="120" Height="50" Margin="10" FontSize="16" FontWeight="Bold" 
+                    Click="ClearButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="DarkGreen" Offset="0"/>
+                        <GradientStop Color="LightGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White"/>
+                </Button.BorderBrush>
+                <Button.BorderThickness>2</Button.BorderThickness>
+                <Button.Foreground>White</Button.Foreground>
+            </Button>
+        </StackPanel>
+
+        <!-- Wynik -->
+        <StackPanel Grid.Row="3" Margin="0,20,0,0">
+            <TextBlock Text="Wynik:" FontSize="16" FontWeight="Bold" Foreground="Black" Margin="0,0,0,5"/>
+            <TextBox x:Name="OutputTextBox" FontSize="16" Padding="10" Background="WhiteSmoke" 
+            TextWrapping="Wrap" IsReadOnly="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
